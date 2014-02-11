@@ -1,0 +1,7 @@
+# Place these lines in your hosts file
+
+# This is just the address of the server. You can access Adminer through here
+192.168.56.101    vagrant.dev
+
+# This is the main portal by which you make changes to the system
+192.168.56.101    symphony.dev
