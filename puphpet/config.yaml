@@ -1,0 +1,148 @@
+---
+vagrantfile-local:
+    vm:
+        box: debian-wheezy72-x64-vbox43
+        box_url: 'http://box.puphpet.com/debian-wheezy72-x64-vbox43.box'
+        hostname: null
+        network:
+            private_network: 192.168.56.101
+            forwarded_port: {  }
+        provider:
+            virtualbox:
+                modifyvm:
+                    cpus: 2
+                    natdnshostresolver1: on
+                    memory: '512'
+                    nictype1: 'virtio'
+                    nictype2: 'virtio'
+                setextradata:
+                    VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
+        provision:
+            puppet:
+                manifests_path: puphpet/puppet
+                manifest_file: manifest.pp
+                options:
+                    - '--verbose'
+                    - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
+                    - '--parser future'
+        synced_folder:
+            lSnulJ3RXXi1:
+                id: vagrant-root
+                source: ./http
+                target: /srv/symphony
+                nfs: 'false'
+        usable_port_range: 2200..2250
+    ssh:
+        host: null
+        port: null
+        private_key_path: null
+        username: vagrant
+        guest_port: null
+        keep_alive: true
+        forward_agent: false
+        forward_x11: false
+        shell: 'bash -l'
+    vagrant:
+        host: detect
+server:
+    packages:
+        - vim
+        - curl
+        - git
+    dot_files:
+        -
+            bash_aliases: null
+    _prevent_empty: ''
+mailcatcher:
+    install: '1'
+    settings:
+        smtp_ip: 0.0.0.0
+        smtp_port: 1025
+        http_ip: 0.0.0.0
+        http_port: '1080'
+        path: /usr/local/bin
+        log: /var/log/mailcatcher/mailcatcher.log
+apache:
+    modules:
+        - php
+        - rewrite
+    vhosts:
+        PtzsNmIh0qag:
+            servername: symphony.dev
+            docroot: /srv/symphony
+            port: '80'
+            setenv:
+                - 'APP_ENV dev'
+            override:
+                - All
+    user: vagrant
+    group: vagrant
+    default_vhost: true
+    mpm_module: prefork
+    mod_pagespeed: 0
+    mod_spdy: 0
+php:
+    version: '55'
+    composer: 0
+    modules:
+        php:
+            - cli
+            - imagick
+            - intl
+            - mcrypt
+            - xcache
+            - xsl
+        pear: {  }
+        pecl: {  }
+    ini:
+        display_errors: On
+        error_reporting: '-1'
+        session.save_path: /var/lib/php/session
+    timezone: America/Los_Angeles
+xdebug:
+    install: 0
+    settings:
+        xdebug.default_enable: '1'
+        xdebug.remote_autostart: '0'
+        xdebug.remote_connect_back: '1'
+        xdebug.remote_enable: '1'
+        xdebug.remote_handler: dbgp
+        xdebug.remote_port: '9000'
+drush:
+    install: 0
+    settings:
+        drush.tag_branch: 6.x
+mysql:
+    root_password: vagrant
+    phpmyadmin: 0
+    adminer: '1'
+    databases:
+        djH92x0OVFBN:
+            grant:
+                - ALL
+            name: symphony
+            host: localhost
+            user: symphony-admin
+            password: nhMCOGMVSsOoqVO5
+            sql_file: /vagrant/symphony.sql
+mongodb:
+    install: 0
+    auth: 1
+    port: '27017'
+    databases: {  }
+beanstalkd:
+    install: 0
+    settings:
+        listenaddress: 0.0.0.0
+        listenport: '13000'
+        maxjobsize: '65535'
+        maxconnections: '1024'
+        binlogdir: /var/lib/beanstalkd/binlog
+        binlogfsync: null
+        binlogsize: '10485760'
+    beanstalk_console: 0
+    binlogdir: /var/lib/beanstalkd/binlog
+rabbitmq:
+    install: 0
+    port: '5672'
+
