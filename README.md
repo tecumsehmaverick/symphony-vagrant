@@ -4,6 +4,8 @@ A super quick way to check out [Symphony CMS][] without harming any part of
 your current setup. You must have [VirtualBox][] and [Vagrant][] installed in
 order to use this.
 
+- Clone this repository using:
+    `git clone --recursive git://github.com/sirlancelot/symphony-vagrant`
 - Copy contents of `hosts.txt` to your computer's `hosts` file
 - Run `vagrant up` from this directory
 - Navigate to <http://symphony.dev/symphony/>
