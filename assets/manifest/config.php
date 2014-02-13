@@ -15,9 +15,11 @@
 			'association_maximum_rows' => '5',
 			'lang' => 'en',
 			'pages_table_nest_children' => 'no',
-			'version' => '2.3.6',
+			'version' => '2.4beta1',
 			'cookie_prefix' => 'sym-',
 			'session_gc_divisor' => '10',
+			'cell_truncation_length' => '75',
+			'admin-path' => 'symphony',
 		),
 		########
 
@@ -52,6 +54,7 @@
 		###### GENERAL ######
 		'general' => array(
 			'sitename' => 'Symphony CMS',
+			'useragent' => 'Symphony/2.4beta1',
 		),
 		########
 
